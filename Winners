@@ -1,0 +1,82 @@
+
+Author: Jondi Zanzu
+Version: 2
+Release: 1
+Selection for potential Coronavirus (fever, difficulty breathing)
+"""
+wFile = open("patient.txt","w")
+wFile.write("Patients file\n")
+wFile.write("Patients detail\n")
+
+intAge =0
+blnFever = False
+strParentGuardian = ""
+blnAbnormalRespiration = False
+#INPUTS
+while True:
+    print("******Vital Signs - Intake Form******\n")
+    strFirst = input("Enter First Name : ")
+    strLast = input("Enter Last Name: ")
+    intAge = int(input("Enter age : "))
+    if (intAge >17):
+                 break
+    else:
+        print("Under age patient!")
+        strParentGuardian = input("Are you in company of your parent or guardian? <Y/N> : ")
+        if (strParentGuardian.upper()=="Y"):
+            break
+        else:
+            print("Please return with parent or legal guardian.  Thank you! \n")
+#An iteration may take anywhere in the program depending on business requirements
+fltFahrenheit = float(input("Enter Temperature in Fahrenheit degrees : "))
+intPulse = int(input("Enter Pulse/minute : "))
+intRespiration = int(input("Enter Respiration/minute : "))
+strBloodPressure = str(input("Enter Blood Pressure (Systolic/Diastolic) : "))
+
+#PROCESSING
+print("Processing Coronavirus symptoms")
+if (fltFahrenheit >100):
+    blnFever = True
+    print("Fever detected")
+if (intRespiration < 12) or (intRespiration >16):
+    blnAbnormalRespiration = True
+    print("Abnormal respiration") 
+print("\nCalculating Celsius from Fahrenheit degrees! \n")
+fltCelsius = (fltFahrenheit - 32)/1.8 #Calculating Celsius degrees
+
+#OUTPUTS
+print("******Vital Signs - Intake Report****** \n")
+print("Welcome "+strFirst+" "+strLast)
+print("Age = ",intAge)
+if (strParentGuardian.upper()=="Y"):
+    print("Underage Patient with legal Parent/Guarding")
+if blnFever:
+    print("Please double check patient for fever!")
+    print("Temperature in Fahrenheit degrees = ",fltFahrenheit)
+    print("Temperature in Celsius degrees = %0.2f" %fltCelsius)
+else:
+    print("Temperature in Fahrenheit degrees = ",fltFahrenheit)
+    print("Temperature in Celsius degrees = %0.2f" %fltCelsius)
+print("Pulse/minute = ",intPulse)
+if blnAbnormalRespiration:
+    print("Double check for shortness of breath - difficulty breathing!")
+    print("Respiration/minute = ",intRespiration)
+else:
+    print("Respiration/minute = ",intRespiration)
+print("Blood Pressure (Systolic/Diastolic) = ",strBloodPressure)
+print("Thank you for your visit "+strFirst)
+wFile = open("patient.txt","r")
+print(patient.txt)
+#Rading Files in Python 
+import os
+print("Python current working directory (CWD) =",os.getcwd())
+os.chdir("C:\\MyPython") #Changing CWD
+print("Reading a file using with")
+with open('readme.txt') as rFile:
+    data = rFile.read()
+    print(data)
+
+print("Processing a text file one line at a time")
+with open('readme.txt') as rFile:
+    for line in rFile :
+        print(line, end=' ')
